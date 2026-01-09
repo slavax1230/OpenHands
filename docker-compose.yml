@@ -2,13 +2,11 @@ services:
   openhands:
     image: docker.openhands.dev/openhands/openhands:1.1
     privileged: true
-    network_mode: host
     environment:
       SANDBOX_RUNTIME_CONTAINER_IMAGE: docker.openhands.dev/openhands/runtime:1.1
       SANDBOX_API_KEY: super-secret-random-string
+    ports:
+      - "3000"
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
       - openhands-data:/.openhands
-
-volumes:
-  openhands-data:
