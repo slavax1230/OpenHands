@@ -1,18 +1,16 @@
 services:
   openhands:
     image: docker.openhands.dev/openhands/openhands:1.1
-    container_name: openhands
     privileged: true
     environment:
       SANDBOX_RUNTIME_CONTAINER_IMAGE: docker.openhands.dev/openhands/runtime:1.1-nikolaik
       SANDBOX_API_KEY: super-secret-random-string
+      SANDBOX_NETWORK_MODE: bridge
     ports:
       - "3000:3000"
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
       - openhands-data:/.openhands
-    extra_hosts:
-      - "host.docker.internal:host-gateway"
 
 volumes:
   openhands-data:
